@@ -158,11 +158,27 @@ document.getElementById("pm").addEventListener("click", function(event) {
   document.getElementById("pd").addEventListener("click", function(event) {
   
     let targetElement = event.target;
+    let elements = document.querySelectorAll("#pd > .title_2 > div > h4");
+    const tdprod = document.querySelector(".tdprod")
+    let a = [];
     
     
 
     if (targetElement === mybtn) {
-        formMain.style.setProperty("display", "block")
+
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i];
+      a.splice(1, 0, element.textContent);
+      console.log(a);
+    }
+        tdprod.textContent = (a)
+        const currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + 3);
+        console.log(currentDate.toLocaleDateString());
+        const tddate = document.querySelector(".tddate");
+        tddate.textContent = (`Орієнтовна дата прибуття ${currentDate.toLocaleDateString()}`);
+        formMain.style.setProperty("display", "block");
+        
     } 
 
   });
@@ -305,7 +321,7 @@ document.getElementById("pm").addEventListener("click", function(event) {
             this.tdpp.innerHTML = '';
             this.tdpp.textContent = ("Після оплати");
             this.tdpayplace1.innerHTML = '';
-            this.tdpayplace1.textContent = ("--")
+            this.tdpayplace1.textContent = ("⍻")
             this.tdamount.textContent = this.amount.value;
         });
 
@@ -313,7 +329,7 @@ document.getElementById("pm").addEventListener("click", function(event) {
           this.tdpp.innerHTML = '';
           this.tdpp.textContent = ("Оплата карткою");
           this.tdpayplace1.innerHTML = '';
-          this.tdpayplace1.textContent = ("✔")
+          this.tdpayplace1.textContent = ("✓")
           this.tdamount.textContent = this.amount.value;
       });
 
